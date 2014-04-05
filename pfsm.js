@@ -10,6 +10,47 @@ var make = function () {
 
         /**
          * The main object where all the Finite State Machine logic takes place.
+         *
+         * ```
+         *   // create the Finite State Machine.
+         *   var pfsm = require('pfsm').make();
+         *
+         *   var definition = {
+         *        "on": {
+         *            // enter state hook
+         *            "_enter": function (cb) {
+         *                // do something asynchronously with a call back that takes an error as a parameter.
+         *                // The callback is provided by pfsm.
+         *                doSomethingAsync(cb);
+         *            },
+         *
+         *            // change state synchronously.
+         *            "turnOff": function (p) {
+         *                pfsm.goTo("off", someData);
+         *            },
+         *            // exit state hook synchronously (since it doesn't take a call back)
+         *            "_exit": function () {
+         *                // maybe some cleanup stuff...
+         *            }
+         *        },
+         *        "off": {
+         *            // asynchronous, takes a callback
+         *            "connectToDb": function(params, cb) {
+         *                connectToDB(params.host + ":" + params.port, function(err) {
+         *                    if (err) { // something goes wrong
+         *                        return cb(err);
+         *                    }
+         *                    // ok everything is fine, we can change state.
+         *                    pfsm.goTo("on", null, cb);
+         *                });
+         *            },
+         *        }
+         *    };
+         *
+         *   // ok now the Finite State Machine can be started.
+         *   pfsm.fsm(setup);
+         * ```
+         *
          * @class pfsm
          *
          */
@@ -33,47 +74,7 @@ var make = function () {
             },
 
             /**
-             * Finite State Machine contructor, must be called before everything else with a definition.
-             * See the example bellow:
-             * ```
-             *   // create the Finite State Machine.
-             *   var pfsm = require('pfsm').make();
-             *
-             *   var definition = {
-             *        "on": {
-             *            // enter state hook
-             *            "_enter": function (cb) {
-             *                // do something asynchronously with a call back that takes an error as a parameter.
-             *                // The callback is provided by pfsm.
-             *                doSomethingAsync(cb);
-             *            },
-             *
-             *            // change state synchronously.
-             *            "turnOff": function (p) {
-             *                pfsm.goTo("off", someData);
-             *            },
-             *            // exit state hook synchronously (since it doesn't take a call back)
-             *            "_exit": function () {
-             *                // maybe some cleanup stuff...
-             *            }
-             *        },
-             *        "off": {
-             *            // asynchronous, takes a callback
-             *            "connectToDb": function(params, cb) {
-             *                connectToDB(params.host + ":" + params.port, function(err) {
-             *                    if (err) { // something goes wrong
-             *                        return cb(err);
-             *                    }
-             *                    // ok everything is fine, we can change state.
-             *                    pfsm.goTo("on", null, cb);
-             *                });
-             *            },
-             *        }
-             *    };
-             *
-             *   // ok now the Finite State Machine can be started.
-             *   pfsm.fsm(setup);
-             * ```
+             * Finite State Machine constructor. This is the first method to be called.
              *
              * @method fsm
              * @param definition {Object} The definition of the Finite State Machine.
@@ -216,7 +217,7 @@ var make = function () {
                 if (!_.has(stateData, "state") || !_.has(_fsm, stateData.state)) {
                     pfsm.error("invalid import state.");
                 }
-                if (!_.has(stateData, "data") || !_.has(_fsm, stateData.data)) {
+                if (!_.has(stateData, "data")) {
                     pfsm.error("invalid import data.");
                 }
                 pfsm.goTo(stateData.state, stateData.data, cb);
