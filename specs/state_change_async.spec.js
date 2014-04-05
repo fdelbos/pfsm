@@ -9,7 +9,7 @@ describe("State change onExit / onEnter asynchronous tests ->", function () {
 
     var setup = {
         "on": {
-            "_onEnter": function (cb) {
+            "_enter": function (cb) {
                 onEnter = true;
                 cb();
             },
@@ -18,13 +18,13 @@ describe("State change onExit / onEnter asynchronous tests ->", function () {
                 pfsm.goTo("off", null, cb);
             },
 
-            "_onExit": function (cb) {
+            "_exit": function (cb) {
                 onExit = true;
                 cb();
             }
         },
         "off": {
-            "_onEnter": function (cb) {
+            "_enter": function (cb) {
                 offEnter = true;
                 cb();
             },
@@ -33,7 +33,7 @@ describe("State change onExit / onEnter asynchronous tests ->", function () {
                 pfsm.goTo("on", null, cb);
             },
 
-            "_onExit": function(cb) {
+            "_exit": function(cb) {
                 offExit = true;
                 cb();
             }

@@ -9,7 +9,7 @@ describe("State change onExit / onEnter synchronous tests ->", function () {
 
     var setup = {
         "on": {
-            "_onEnter": function () {
+            "_enter": function () {
                 onEnter = true;
             },
 
@@ -17,12 +17,12 @@ describe("State change onExit / onEnter synchronous tests ->", function () {
                 pfsm.goTo("off");
             },
 
-            "_onExit": function () {
+            "_exit": function () {
                 onExit = true;
             }
         },
         "off": {
-            "_onEnter": function () {
+            "_enter": function () {
                 offEnter = true;
             },
 
@@ -30,7 +30,7 @@ describe("State change onExit / onEnter synchronous tests ->", function () {
                 pfsm.goTo("on");
             },
 
-            "_onExit": function() {
+            "_exit": function() {
                 offExit = true;
             }
         }
