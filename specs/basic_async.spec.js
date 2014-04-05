@@ -1,4 +1,4 @@
-describe("Persistence tests ->", function () {
+describe("Basic asynchronous tests ->", function () {
 
     var pfsm = require('../pfsm').make();
 
