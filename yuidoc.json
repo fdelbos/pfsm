@@ -1,0 +1,12 @@
+{
+    "name": "Persistent Finite State Machine",
+    "description": "Persistent Finite State Machine: a persistable finite state machine for nodejs",
+    "version": "0.1.2",
+    "url": "http://example.com/",
+    "options": {
+        "linkNatives": "true",
+        "ignorePaths": [ "specs" ],
+        "paths": ["./*"],
+        "outdir": "./docs"
+    }
+}
