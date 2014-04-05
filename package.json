@@ -1,13 +1,13 @@
 {
     "name": "pfsm",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "author": "Frederic Delbos <fred.delbos@gmail.com>",
     "license": "MIT",
     "description": "Persistent Finite State Machine",
     "homepage": "https://github.com/fdelbos/pfsm",
     "main": "pfsm.js",
     "scripts": {
-        "test": "jasmine-node test/"
+        "test": "jasmine-node specs/ --verbose"
     },
     "repository": {
         "type": "git",
