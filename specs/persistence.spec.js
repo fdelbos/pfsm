@@ -5,12 +5,12 @@ describe("Persistence tests ->", function () {
     var setup = {
         "on": {
             "turnOff": function () {
-                pfsm.goto("off", null);
+                pfsm.goTo("off", null);
             }
         },
         "off": {
             "turnOn": function(p, cb) {
-                pfsm.goto("on", null, cb);
+                pfsm.goTo("on", null, cb);
             }
         }
     };

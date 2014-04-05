@@ -15,7 +15,7 @@ describe("State change onExit / onEnter asynchronous tests ->", function () {
             },
 
             "turnOff": function (p, cb) {
-                pfsm.goto("off", null, cb);
+                pfsm.goTo("off", null, cb);
             },
 
             "_onExit": function (cb) {
@@ -30,7 +30,7 @@ describe("State change onExit / onEnter asynchronous tests ->", function () {
             },
 
             "turnOn": function(p, cb) {
-                pfsm.goto("on", null, cb);
+                pfsm.goTo("on", null, cb);
             },
 
             "_onExit": function(cb) {

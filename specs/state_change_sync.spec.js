@@ -14,7 +14,7 @@ describe("State change onExit / onEnter synchronous tests ->", function () {
             },
 
             "turnOff": function () {
-                pfsm.goto("off");
+                pfsm.goTo("off");
             },
 
             "_onExit": function () {
@@ -27,7 +27,7 @@ describe("State change onExit / onEnter synchronous tests ->", function () {
             },
 
             "turnOn": function() {
-                pfsm.goto("on");
+                pfsm.goTo("on");
             },
 
             "_onExit": function() {

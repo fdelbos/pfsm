@@ -38,11 +38,11 @@ var make = function () {
                 if (_.has(_fsm, "_init") && _.isFunction(_fsm._init)) {
                     _fsm._init(state, data, function (err) {
                         if (!pfsm.handleError(err, cb)) {
-                            pfsm.goto(state, data, cb);
+                            pfsm.goTo(state, data, cb);
                         }
                     });
                 } else {
-                    pfsm.goto(state, data, cb);
+                    pfsm.goTo(state, data, cb);
                 }
             },
 
@@ -68,7 +68,7 @@ var make = function () {
                 pfsm.stateChangeHandle(cb, "_onEnter");
             },
 
-            goto: function (state, data, cb) {
+            goTo: function (state, data, cb) {
                 if (!_.has(_fsm, state)) {
                     pfsm.error("state '" + state + "' not found");
                 }
@@ -125,7 +125,7 @@ var make = function () {
                 if (!_.has(stateData, "data") || !_.has(_fsm, stateData.data)) {
                     pfsm.error("invalid import data.");
                 }
-                pfsm.goto(stateData.state, stateData.data, cb);
+                pfsm.goTo(stateData.state, stateData.data, cb);
             }
 
 
@@ -134,7 +134,7 @@ var make = function () {
     return {
         fsm: pfsm.fsm,
         start: pfsm.start,
-        goto: pfsm.goto,
+        goTo: pfsm.goTo,
         call: pfsm.call,
         save: pfsm.save,
         load: pfsm.load,

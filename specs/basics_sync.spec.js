@@ -5,12 +5,12 @@ describe("Basic synchronous tests ->", function () {
     var setup = {
         "on": {
             "turnOff": function () {
-                pfsm.goto("off");
+                pfsm.goTo("off");
             }
         },
         "off": {
             "turnOn": function() {
-                pfsm.goto("on");
+                pfsm.goTo("on");
             }
         }
     };
